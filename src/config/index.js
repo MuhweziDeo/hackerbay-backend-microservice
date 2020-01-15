@@ -4,3 +4,5 @@ dotenv.config();
 
 export const apiPrefix = process.env.API_PREFIX || "/api/v1";
 export const port = process.env.PORT || 5000;
+export const secretKey =
+  process.env.SECRET_KEY || "defaultauthenticationdonotuseinproduction";

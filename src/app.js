@@ -1,11 +1,14 @@
 import express from "express";
 import morgan from "morgan";
 import { apiPrefix } from "./config";
+import authRoutes from "./authentication";
 
 const app = express();
 
 app.use(express.json());
 app.use(morgan("combined"));
+
+app.use(`${apiPrefix}/auth`, authRoutes);
 
 app.get(apiPrefix, (req, res) =>
   res.send({
