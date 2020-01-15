@@ -27,3 +27,13 @@ describe("sendErrorResponse", () => {
       .with(500);
   });
 });
+
+describe("decodeToken", () => {
+  it("should decode token", async () => {
+    chai.spy.restore(helpers.createToken);
+    const token = await helpers.createToken({ username: "username" });
+    chai.spy.on(jwt, "verify");
+    await helpers.decodeToken(token);
+    chai.expect(jwt.verify).to.have.been.called();
+  });
+});
