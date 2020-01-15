@@ -14,6 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(morgan("combined"));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // Routes
 app.use(`${apiPrefix}/auth`, authRoutes);
 app.use(`${apiPrefix}/patch`, patchRoutes);
