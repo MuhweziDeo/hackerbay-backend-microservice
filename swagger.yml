@@ -1,0 +1,76 @@
+swagger: "2.0"
+info:
+  title: Node Js microservice
+  version: 1.0.0
+schemes:
+  - http
+host: localhost:5000
+basePath: /api/v1
+consumes:
+  - application/json
+produces:
+  - application/json
+securityDefinitions:
+  bearerToken:
+    type: apiKey
+    in: header
+    name: Authorization
+security:
+  - bearerToken: []
+
+paths:
+  /auth/login:
+    post:
+      responses:
+        "200":
+          description: 200 OK
+      tags:
+        - Login
+      description: Authenticates user
+      parameters:
+        - name: body
+          required: true
+          in: body
+          schema:
+            properties:
+              password:
+                type: string
+              username:
+                type: string
+  /thumbnail:
+    post:
+      responses:
+        "200":
+          description: 200 OK
+      tags:
+        - Compress Image
+      summary: Download image and create thumbnail
+      parameters:
+        - name: body
+          required: true
+          in: body
+          schema:
+            properties:
+              url:
+                type: string
+                example: "https://images.pexels.com/photos/1624487/pexels-photo-1624487.jpeg"
+  /patch:
+    patch:
+      responses:
+        "200":
+          description: 200 OK
+      tags:
+        - Json Patch
+      summary: Patch Request Body
+      parameters:
+        - name: body
+          required: true
+          in: body
+          schema:
+            properties:
+              document:
+                type: object
+                example: { "foo": "bar" }
+              patch:
+                type: array
+                example: [{ "op": "add", "path": "/", "value": "value" }]
