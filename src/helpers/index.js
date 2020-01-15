@@ -1,5 +1,7 @@
 import jwt from "jsonwebtoken";
-import { secretKey } from "../config";
+import sharp from "sharp";
+import download from "image-downloader";
+import { secretKey, downloadFolder, thumbNailFolder } from "../config";
 
 /**
 @description creates access token
@@ -33,3 +35,19 @@ export const sendErrorResponse = (res, error) =>
     message: error.message || "Internal Server Error",
     success: false
   });
+
+export const generateThumbnail = async url => {
+  try {
+    const file = await download.image({ url, dest: downloadFolder });
+    const fileExt = file.filename.split(".")[1];
+    const path = `${thumbNailFolder}/${Math.floor(
+      Math.random() * 900000000
+    )}-thumbnail.${fileExt}`;
+    sharp(file.filename)
+      .resize(50, 50)
+      .toFile(path);
+    return path;
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};

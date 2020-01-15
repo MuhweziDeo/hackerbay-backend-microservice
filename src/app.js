@@ -4,6 +4,7 @@ import { errors } from "celebrate";
 import { apiPrefix } from "./config";
 import authRoutes from "./authentication";
 import patchRoutes from "./json-patch";
+import thumbnailRoutes from "./thumbnail";
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(morgan("combined"));
 // Routes
 app.use(`${apiPrefix}/auth`, authRoutes);
 app.use(`${apiPrefix}/patch`, patchRoutes);
+app.use(`${apiPrefix}/thumbnail`, thumbnailRoutes);
 
 app.use(errors());
 app.get(apiPrefix, (req, res) =>
