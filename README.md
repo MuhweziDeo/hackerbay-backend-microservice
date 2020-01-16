@@ -21,6 +21,8 @@ This application provides features like authentication, generating thumbnails an
 
 ### Endpoints
 
+- API-PREFIX `api/v1`
+
 | EndPoint         | Description                                                        | Protection |
 | ---------------- | ------------------------------------------------------------------ | ---------- |
 | PATCH /patch/    | patch a document                                                   | Yes        |
