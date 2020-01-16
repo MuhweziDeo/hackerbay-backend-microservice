@@ -1,9 +1,8 @@
 FROM alpine
 
 RUN apk add --update nodejs npm
-RUN apk add python
 
-RUN npm -v
+RUN apk add python
 
 WORKDIR /usr/src/app
 
